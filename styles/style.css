@@ -1,0 +1,31 @@
+#title {
+    color: aliceblue;
+    display: table;
+    margin: 0 auto;
+  }
+  #sub-title {
+    color: #FA8334;
+    text-align: center;
+  }
+  body {
+    background-color: #586F7C;
+    font-family:'Courier New', Courier, monospace;
+  }
+  li {
+    display: inline;
+    margin-right: 20px;
+  }
+  ul {
+    display: table;
+    margin: 0 auto;
+  }
+  a {
+    color: #B3FFB3;
+    text-decoration: #B3FFB3;
+  }
+  img {
+    position: absolute;
+    width: 15vw;
+   /*  height: 10vh; */
+    float: left;
+  }

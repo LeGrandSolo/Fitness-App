@@ -1,0 +1,49 @@
+.month {
+    padding: 4em 1.5em;
+    width: 80%;
+    margin: auto;
+    background: #1abc9c;
+    text-align: center;
+  }
+  .month-header {
+    text-align: center;
+    text-transform: capitalize;
+    margin: 0;
+  }
+  .month ul {
+    color: #b3ffb3;
+    margin: auto;
+    width: 100%;
+    padding: 0;
+  }
+  .prev {
+    float: left;
+    margin: 0;
+    padding-top: 10px;
+  }
+  .next {
+    float: right;
+    margin: 0;
+    padding-top: 10px;
+  }
+  .weekdays{
+    padding: 2em 1.5em;
+    width: 80%;
+    margin: auto;
+    background: #BBDEF0;
+    text-align: center;
+  }
+  .weekdays table{
+    margin: auto;
+    width: 100%;
+  }
+  .weekdays tr{
+    border: 1px solid #1abc9c;
+    border-collapse: collapse;
+  }
+  .weekdays th, td{
+    border: 1px solid #1abc9c;
+    border-collapse: collapse;
+    color: #4D243D;
+    text-align: center;
+  }
