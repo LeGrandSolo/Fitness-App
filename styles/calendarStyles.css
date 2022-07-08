@@ -1,49 +1,83 @@
 .month {
-    padding: 4em 1.5em;
-    width: 80%;
-    margin: auto;
-    background: #1abc9c;
-    text-align: center;
-  }
-  .month-header {
-    text-align: center;
-    text-transform: capitalize;
-    margin: 0;
-  }
-  .month ul {
-    color: #b3ffb3;
-    margin: auto;
-    width: 100%;
-    padding: 0;
-  }
-  .prev {
-    float: left;
-    margin: 0;
-    padding-top: 10px;
-  }
-  .next {
-    float: right;
-    margin: 0;
-    padding-top: 10px;
-  }
-  .weekdays{
-    padding: 2em 1.5em;
-    width: 80%;
-    margin: auto;
-    background: #BBDEF0;
-    text-align: center;
-  }
-  .weekdays table{
-    margin: auto;
-    width: 100%;
-  }
-  .weekdays tr{
-    border: 1px solid #1abc9c;
-    border-collapse: collapse;
-  }
-  .weekdays th, td{
-    border: 1px solid #1abc9c;
-    border-collapse: collapse;
-    color: #4D243D;
-    text-align: center;
-  }
+  padding: 3em 1.5em;
+  width: 90%;
+  margin: auto;
+  background: #521410;
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
+  text-align: center;
+}
+#month-header {
+  text-align: center;
+  text-transform: capitalize;
+  margin: 0;
+}
+/* this is initialized in the main.js */
+#monthHeaderName{
+  margin-bottom: 0.5em;
+}
+.month ul {
+  color: #e0ff4f;
+  margin: auto;
+  width: 100%;
+  padding: 0;
+}
+#prev {
+  float: left;
+  margin: 0;
+  padding-top: 1em;
+}
+#next {
+  float: right;
+  margin: 0;
+  padding-top: 1em;
+}
+.days {
+  overflow: hidden;
+  width: 90%;
+  padding: 2em;
+  margin: auto;
+  padding: 0em 2em 2em 2em;
+  background: #96bbbb;
+  text-align: center;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+.weekday {
+  margin: 0;
+  padding: 10px 0;
+}
+.weekday li {
+  float: left;
+  list-style-type: none;
+  margin-bottom: 0.5em;
+  width: 13.6%;
+  text-align: center;
+  color: #e0ff4f;
+}
+.dates {
+  clear: both;
+  padding: 1em 0;
+  background: #521410;
+  overflow:hidden;
+  margin: 0;
+  border-radius: 1em;
+}
+.dates li {
+  list-style-type: none;
+  float: left;
+  cursor: default;
+  width: 13.6%;
+  text-align: center;
+  margin-left: -0.5em;
+  margin-bottom: 0.4em;
+  color: #e0ff4f;
+}
+#active{
+  background-color: #b3423a;
+  border-radius: 0.5em;
+  color: #e0ff4f;
+}
+.off{
+  color: #dfff4f86;
+}
