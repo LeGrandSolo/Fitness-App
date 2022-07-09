@@ -8,6 +8,12 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-32x32.png" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/calendarStyles.css" />
+    <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+    <script>
+      // Initialize Parse
+        Parse.initialize("dJrZ9TYsWbBOzC1knqDGayhEkg1gnmXlTM99xkmr", "uTzFSCfBFLhRVZDNfm1sUY1j9I9GIxapLsccU2LF");
+        Parse.serverURL = "https://parseapi.back4app.com/";
+      </script>
   </head>
   <body onload="selectActiveDate()">
     <head>
@@ -42,14 +48,11 @@
             <li>Sat</li>
             <li>Sun</li>
           </ul>
-          <ul class="dates">
-          </ul>
-          <div id="popup">
-            <p>That is a popup!</p>
-          </div>
+          <ul class="dates"></ul>
+          <div id="popup"></div>
         </div>
       </div>
     </main>
   </body>
-  <script src="./main.js"></script>
+  <script src="./scripts/calendar.js"></script>
 </html>

@@ -8,8 +8,12 @@
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-32x32.png" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/calendarStyles.css" />
+    <script
+      type="text/javascript"
+      src="https://npmcdn.com/parse/dist/parse.min.js"
+    ></script>
   </head>
-  <body>
+  <body >
     <head>
       <h1><a href="/index.html" id="title">Be Healthier!</a></h1>
       <!-- <img src="./586296bf3796e30ac446873f.png" alt="arm picture" /> -->
@@ -23,8 +27,14 @@
       </nav>
     </head>
     <main>
-      
     </main>
   </body>
-  <script src="./app.js"></script>
+  <script>
+    // Initialize Parse
+    Parse.initialize(
+      "dJrZ9TYsWbBOzC1knqDGayhEkg1gnmXlTM99xkmr",
+      "uTzFSCfBFLhRVZDNfm1sUY1j9I9GIxapLsccU2LF"
+    );
+    Parse.serverURL = "https://parseapi.back4app.com/";
+  </script>
 </html>
