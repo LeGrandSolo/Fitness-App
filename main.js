@@ -20,6 +20,7 @@ const months = [
   "November",
   "December",
 ];
+datesElem.addEventListener("click", showPopupOnDate);
 document.getElementById("prev").addEventListener("click", changeToPrevMonth);
 document.getElementById("next").addEventListener("click", changeToNextMonth);
 generateMonthAndYear();
@@ -27,10 +28,7 @@ function generateDates() {
   while (datesElem.firstChild) {
     datesElem.removeChild(datesElem.firstChild);
   }
-  const weekDayOfFirstDayOfMonth = getWeekDayOfFirstDateInMonth(
-    yearUsrIsOn,
-    monthUsrIsOn
-  );
+  const weekDayOfFirstDayOfMonth = getWeekDay(yearUsrIsOn, monthUsrIsOn, 1);
   if (weekDayOfFirstDayOfMonth > 1) {
     let hightestDateOfPrevMonth = 0;
     if (monthUsrIsOn !== 0) {
@@ -49,27 +47,45 @@ function generateDates() {
       i <= hightestDateOfPrevMonth;
       i++
     ) {
-      const li = document.createElement("li");
-      li.textContent = i;
-      li.style.color = '#96bbbb';
-      datesElem.appendChild(li);
+      createAndAppendLiWithDateNum(i, false, "not-curr-month");
     }
   }
   let numOfDaysInCurrMonth = getNumberOfDaysOfMonth(yearUsrIsOn, monthUsrIsOn);
   for (let i = 1; i <= numOfDaysInCurrMonth; i++) {
-    const li = document.createElement("li");
-    li.textContent = i;
-    if (i === currDate.getDate()) {
-        li.id = "active";
+    createAndAppendLiWithDateNum(i, true, "curr-month");
+  }
+  const weekDayOfLastDateOfMonth = getWeekDay(
+    yearUsrIsOn,
+    monthUsrIsOn,
+    numOfDaysInCurrMonth
+  );
+  if (weekDayOfLastDateOfMonth !== 0) {
+    let addDate = 1;
+    for (let i = 7 - (7 - weekDayOfLastDateOfMonth); i < 7; i++) {
+      createAndAppendLiWithDateNum(addDate, false, "not-curr-month");
+      addDate++;
     }
-    datesElem.appendChild(li);
   }
 }
+function createAndAppendLiWithDateNum(num, isCurrMonth, liClassName) {
+  const li = document.createElement("li");
+  li.textContent = num;
+  if (isCurrMonth) {
+    if (num === currDate.getDate()) {
+      li.id = "active";
+    }
+  }
+  li.className = liClassName;
+  datesElem.appendChild(li);
+}
+
 function generateMonthAndYear() {
   pMonth.textContent = months[monthUsrIsOn];
   pYear.textContent = currDate.getFullYear();
   pMonth.id = "monthHeaderName";
   pYear.id = "yearHeaderName";
+  pMonth.className = "month-year-header";
+  pYear.className = "month-year-header";
   div.append(pMonth, pYear);
   div.style.margin = "auto";
   generateDates();
@@ -108,6 +124,13 @@ function changeToNextMonth() {
 function getNumberOfDaysOfMonth(year, month) {
   return new Date(year, month + 1, 0).getDate();
 }
-function getWeekDayOfFirstDateInMonth(year, month) {
-  return new Date(year, month, 1).getDay();
+function getWeekDay(year, month, day) {
+  return new Date(year, month, day).getDay();
+}
+function showPopupOnDate(e) {
+  let popup = document.querySelector("#popup");
+  popup.style.display = "block";
+  if (e.target.nodeName === "LI") {
+    popup.textContent = e.target.textContent;
+  }
 }

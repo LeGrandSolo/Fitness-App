@@ -12,12 +12,21 @@
   text-transform: capitalize;
   margin: 0;
 }
+.month-year-header{
+  color: #e0ff4f;
+}
 /* this is initialized in the main.js */
-#monthHeaderName{
+#monthHeaderName {
   margin-bottom: 0.5em;
 }
-.month ul {
+.not-curr-month {
+  color: #96bbbb;
+}
+.curr-month {
   color: #e0ff4f;
+}
+/* this is initialized in the main.js */
+.month ul {
   margin: auto;
   width: 100%;
   padding: 0;
@@ -59,7 +68,7 @@
   clear: both;
   padding: 1em 0;
   background: #521410;
-  overflow:hidden;
+  overflow: hidden;
   margin: 0;
   border-radius: 1em;
 }
@@ -71,13 +80,7 @@
   text-align: center;
   margin-left: -0.5em;
   margin-bottom: 0.4em;
-  color: #e0ff4f;
 }
-#active{
-  background-color: #b3423a;
-  border-radius: 0.5em;
-  color: #e0ff4f;
-}
-.off{
-  color: #dfff4f86;
+#popup{
+  display: none;
 }
