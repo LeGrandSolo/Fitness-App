@@ -143,7 +143,7 @@ function showPopupOnSelectedDate(e) {
     if (typeof e === 'number') {
       dateDataKey = e;
     } else {
-      dateDataKey = e.target.textContente;
+      dateDataKey = e.target.textContent;
     }
     ul = dateData[dateDataKey];
     ul.appendChild(li);
