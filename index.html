@@ -13,7 +13,7 @@
       src="https://npmcdn.com/parse/dist/parse.min.js"
     ></script>
   </head>
-  <body >
+  <body>
     <head>
       <h1><a href="/index.html" id="title">Be Healthier!</a></h1>
       <!-- <img src="./586296bf3796e30ac446873f.png" alt="arm picture" /> -->
@@ -25,16 +25,46 @@
           </li>
         </ul>
       </nav>
+      <main>
+        <div class="register">
+          <form action="https://parseapi.back4app.com/">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" />
+            <label for="pass">Password:</label>
+            <input type="password" name="pass" id="pass" />
+            <label for="repass">Confirm password:</label>
+            <input type="password" name="repass" id="repass" />
+            <input type="submit" name="" id="" />
+          </form>
+        </div>
+      </main>
     </head>
-    <main>
-    </main>
   </body>
+
   <script>
     // Initialize Parse
     Parse.initialize(
       "dJrZ9TYsWbBOzC1knqDGayhEkg1gnmXlTM99xkmr",
       "uTzFSCfBFLhRVZDNfm1sUY1j9I9GIxapLsccU2LF"
     );
+    async function createNewUser(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      data = {
+        email : formData.get('email'),
+        password: formData.get('pass')
+      }
+      const usr = new Parse.Object('User1');
+      usr.set('email', data.email);
+      usr.set('password', data.password);
+      try{
+        await usr.save()
+        alert('Welcome!')
+      }catch(e){
+        alert(`Something went wrong :( Error: ${e.message}`)
+      }
+    }
+    document.querySelector('form').addEventListener('submit', createNewUser);
     Parse.serverURL = "https://parseapi.back4app.com/";
   </script>
 </html>
