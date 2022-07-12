@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Initialize Parse
 Parse.initialize(
   "eJEDc1Sgrs3G8Oksyr4UMNasfBOuKBne42VsgF5t",
@@ -6,7 +7,7 @@ Parse.initialize(
 async function createNewUser(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
-  data = {
+  const data = {
     email: formData.get("email"),
     username: formData.get("username"),
     password: formData.get("pass"),
