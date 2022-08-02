@@ -4,44 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="." />
     <title>My workouts</title>
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-32x32.png" />
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/calendarStyles.css" />
-    <script
-      type="text/javascript"
-      src="https://npmcdn.com/parse/dist/parse.min.js"
-    ></script>
+    <script src="./scripts/app.js" type="module"></script>
   </head>
   <body>
     <head>
-      <h1><a href="/index.html" id="title">Be Healthier!</a></h1>
+      <h1><a href="/" id="title">Be Healthier!</a></h1>
       <!-- <img src="./586296bf3796e30ac446873f.png" alt="arm picture" /> -->
       <nav>
         <ul class="ul-global">
-          <li class="li-global"><a href="./workouts.html">My workouts</a></li>
+          <li class="li-global"><a href="/my-workouts/8">My workouts</a></li>
           <li class="li-global">
-            <a href="./excercises.html">Learn new skills</a>
+            <a href="/excercises">Learn new skills</a>
           </li>
         </ul>
       </nav>
-      <main>
-        <div class="register">
-          <form action="https://parseapi.back4app.com/">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" />
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" />
-            <label for="pass">Password:</label>
-            <input type="password" name="pass" id="pass" />
-            <label for="repass">Confirm password:</label>
-            <input type="password" name="repass" id="repass" />
-            <input type="submit" name="" id="" />
-          </form>
-        </div>
-      </main>
     </head>
+    <main></main>
   </body>
-  <script src="./scripts/loginRegisterSystem/main.js">
-  </script>
 </html>

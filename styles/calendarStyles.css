@@ -31,15 +31,13 @@
   width: 100%;
   padding: 0;
 }
-#prev {
+.prev {
   float: left;
   margin: 0;
-  padding-top: 1em;
 }
-#next {
+.next {
   float: right;
   margin: 0;
-  padding-top: 1em;
 }
 .days {
   overflow: hidden;
@@ -88,4 +86,11 @@
   background-color: #b3423a;
   border-radius: 0.5em;
   color: #e0ff4f;
+}
+.hitbox{
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  width: 3em;
+  height: 3em;
+  padding-top: 1em;
 }
