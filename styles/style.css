@@ -1,53 +1,64 @@
-*{
+* {
   box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 #title {
-    color: aliceblue;
-    display: table;
-    font-size: 1.8rem;
-    margin: 0.5em auto;
-  }
-  #sub-title {
-    color: aliceblue;
-    font-size: 1.5rem;
-    margin: 1.5em auto 0.5em auto;
-    text-align: center;
-    text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011, 1px 1px 0 #001011;
-  }
-  body {
-    /* background-color: #586F7C; */
-    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(../editjpg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family:'Courier New', Courier, monospace;
-  }
-  div{
-    -webkit-user-select: none;
-    user-select: none;
-  }
-  .li-global {
-    display: inline;
-    font-size: 1rem;
-    margin-right: 2em;
-    color: #e0ff4f;
-    
-  }
-  .ul-global {
-    margin: 0 auto 0.5em auto;
-    list-style-type: none;
-    display: table;
-  }
-  a {
-    color: #E0FF4F;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011, 1px 1px 0 #001011;
-  }
-  /* img{
+  color: aliceblue;
+  display: table;
+  font-size: 1.8rem;
+  margin: 0.5em auto;
+}
+#sub-title {
+  color: aliceblue;
+  font-size: 1.5rem;
+  margin: 1.5em auto 0.5em auto;
+  text-align: center;
+  text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
+    1px 1px 0 #001011;
+}
+body {
+  /* background-color: #586F7C; */
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(../editjpg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Courier New", Courier, monospace;
+}
+div {
+  -webkit-user-select: none;
+  user-select: none;
+}
+h3 {
+  margin-top: 1em;
+  color: #30c404;
+}
+label {
+  display: block;
+  margin-top: 1em;
+  color: #e0ff4f;
+}
+.li-global {
+  display: inline;
+  font-size: 1rem;
+  margin-right: 2em;
+  color: #e0ff4f;
+}
+.ul-global {
+  margin: 0 auto 0.5em auto;
+  list-style-type: none;
+  display: table;
+}
+a {
+  color: #e0ff4f;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
+    1px 1px 0 #001011;
+}
+/* img{
     width: 50%;
     margin: 2em auto;
     display: block;
