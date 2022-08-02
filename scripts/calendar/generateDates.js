@@ -1,12 +1,10 @@
 import { getNumberOfDaysOfMonth, getWeekDay } from "./getDateInfo.js";
 import { showPopupOnSelectedDate } from "./modifySelectedDateInfo.js";
+import { monthUsrIsOn, yearUsrIsOn, currDate } from "./changeMonth.js";
 const dateData = {};
 const datesElem = document.querySelector(".dates");
 const pMonth = document.createElement("p");
 const pYear = document.createElement("p");
-const currDate = new Date();
-let monthUsrIsOn = currDate.getMonth();
-let yearUsrIsOn = currDate.getFullYear();
 function generateDates() {
   while (datesElem.firstChild) {
     datesElem.removeChild(datesElem.firstChild);
@@ -68,15 +66,11 @@ function createAndAppendLiWithDateNum(num, isCurrMonth, liClassArr) {
   }
   datesElem.appendChild(li);
 }
-
 export {
   generateDates,
   createAndAppendLiWithDateNum,
   dateData,
   datesElem,
-  monthUsrIsOn,
-  yearUsrIsOn,
   pYear,
   pMonth,
-  currDate
 };

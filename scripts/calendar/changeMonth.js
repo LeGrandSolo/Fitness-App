@@ -1,11 +1,11 @@
 import {
-  currDate,
   generateDates,
-  monthUsrIsOn as oldMonthUsrIsOn,
   pMonth,
   pYear,
-  yearUsrIsOn as oldYearUsrIsOn,
 } from "./generateDates.js";
+export const currDate = new Date();
+export let monthUsrIsOn = currDate.getMonth();
+export let yearUsrIsOn = currDate.getFullYear();
 const div = document.createElement("div");
 const months = [
   "January",
@@ -24,8 +24,6 @@ const months = [
 
 document.getElementById("prev").addEventListener("click", changeToPrevMonth);
 document.getElementById("next").addEventListener("click", changeToNextMonth);
-let monthUsrIsOn = oldMonthUsrIsOn;
-let yearUsrIsOn = oldYearUsrIsOn;
 function generateMonthAndYear() {
   pMonth.textContent = months[monthUsrIsOn];
   pYear.textContent = currDate.getFullYear();
