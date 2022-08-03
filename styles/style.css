@@ -5,6 +5,8 @@
 }
 #title {
   color: aliceblue;
+  user-select: none;
+  -webkit-user-select: none;
   display: table;
   font-size: 1.8rem;
   margin: 0.5em auto;
@@ -12,7 +14,7 @@
 #sub-title {
   color: aliceblue;
   font-size: 1.5rem;
-  margin: 1.5em auto 0.5em auto;
+  margin: 3rem auto 0.5em auto;
   text-align: center;
   text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
     1px 1px 0 #001011;
@@ -27,39 +29,100 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 div {
+  user-select: none;
   -webkit-user-select: none;
   user-select: none;
 }
 h3 {
-  margin-top: 1em;
-  color: #30c404;
-}
-label {
-  display: block;
-  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 1.5rem;
   color: #e0ff4f;
+  text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
+    1px 1px 0 #001011;
+  font-weight: bolder;
 }
 .li-global {
   display: inline;
-  font-size: 1rem;
   margin-right: 2em;
+
   color: #e0ff4f;
 }
 .ul-global {
+  user-select: none;
+  -webkit-user-select: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   margin: 0 auto 0.5em auto;
   list-style-type: none;
   display: table;
 }
+#nav {
+  margin: 0 auto;
+}
 a {
   color: #e0ff4f;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
+  margin-top: 100px;
   text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
     1px 1px 0 #001011;
+  transition: all 200ms;
 }
-/* img{
-    width: 50%;
-    margin: 2em auto;
-    display: block;
-  } */
+li:hover a {
+  transform: scale(1.5);
+  font-size: 1.3rem;
+  transition: all 200ms;
+}
+.user-form {
+  padding: 3em 1.5em;
+  width: 90%;
+  margin: 3rem auto;
+  background: rgba(150, 187, 187, 0.3);
+  box-shadow: 4px 6px rgba(41, 41, 41, 0.3);
+  border-radius: 1em;
+  text-align: center;
+}
+form {
+  width: 80%;
+  margin: 0 auto;
+}
+label,
+input {
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+label {
+  width: 30%;
+  text-align: right;
+  color: #e0ff4f;
+  text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
+    1px 1px 0 #001011;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+label + input {
+  width: 30%;
+  margin: 0 30% 0 4%;
+}
+#submit {
+  display: block;
+  margin: 0.5em auto;
+  font-size: 1.2rem;
+  width: 25%;
+}
+/* #submit :hover{
+  cursor: pointer;
+  background-color: #001011;
+} */
+input {
+  background-color: rgba(150, 187, 187, 0.3);
+  border-style: solid;
+  border-color: #e0ff4f;
+  font-size: 1.2rem;
+  outline: none;
+  color: #e0ff4f;
+  border-radius: 0.3em;
+}

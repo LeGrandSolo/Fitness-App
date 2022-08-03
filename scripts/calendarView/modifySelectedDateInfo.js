@@ -1,15 +1,35 @@
-import { getFormData } from "../api/api.js";
+import { getFormData, post } from "../api/api.js";
 import { html, render } from "../api/lib.js";
 import { changeToNextMonth, changeToPrevMonth } from "./changeMonth.js";
 
-const popupTemplate = (onSubmit) => html`
+const popupTemplate = (onSubmit, exercises) => html`
   <form @submit=${onSubmit}>
     <label for="exercise-name">Exercise Name :</label>
     <input type="text" name="exercise-name" />
     <input type="submit" />
   </form>
+  <div id="date-exercises">
+    <table>
+      <tr>
+        <th>Exercise</th>
+        <th>Sets</th>
+        <th>Reps</th>
+        <th>Intensity</th>
+      </tr>
+    </table>
+  </div>
 `;
-function showPopupOnSelectedDate(e) {
+const exerciseCard = (exercise) => html`
+  <tr>
+    <td>${exercise.name}</td>
+    <td>${exercise.sets}</td>
+    <td>${exercise.repetitions}</td>
+    <td>${exercise.intensity}</td>
+  </tr>
+`;
+function showPopupOnSelectedDateAndFetchData(e) {
+  /* const url = "/classes/Exercises";
+  const res = await get("/classes/Exercises"); */
   const popupDiv = document.getElementById("popup");
   popupDiv.style.display = "block";
   render(popupTemplate(onSubmit), popupDiv);
@@ -65,9 +85,12 @@ function selectActiveDate(e) {
       if (prevActive !== e.target) {
         prevActive.id = "";
         e.target.id = "active";
-        showPopupOnSelectedDate(e);
+        showPopupOnSelectedDateAndFetchData(e);
       }
     }
   }
 }
-export { selectActiveDate, showPopupOnSelectedDate };
+export {
+  selectActiveDate,
+  showPopupOnSelectedDateAndFetchData as showPopupOnSelectedDate,
+};

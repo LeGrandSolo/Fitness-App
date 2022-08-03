@@ -15,10 +15,11 @@ export async function request(method, url, data) {
       "X-Parse-Application-Id": "eJEDc1Sgrs3G8Oksyr4UMNasfBOuKBne42VsgF5t",
 
       "X-Parse-REST-API-Key": "VlQKadGc11LdggQFbvusq0ZOGA6Klls7BPaxEncQ",
-
-      "X-Parse-Revocable-Session": "1",
     },
   };
+  if (url.split('/')[1] === "users" || url.split('/')[1] === 'login') {
+    options.headers["X-Parse-Revocable-Session"] = "1";
+  }
   if (data) {
     options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(data);
