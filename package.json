@@ -18,6 +18,7 @@
   "homepage": "https://github.com/LeGrandSolo/Fitness-App#readme",
   "dependencies": {
     "lit-html": "^2.2.7",
-    "page": "^1.11.6"
+    "page": "^1.11.6",
+    "parse": "^3.4.3"
   }
 }

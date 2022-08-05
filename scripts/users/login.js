@@ -9,7 +9,7 @@ const loginTemplate = (onLogin) => html` <div class="user-form">
     ><input type="text" name="username" id="username" />
     <label for="password">Password: </label
     ><input type="password" name="password" id="password" />
-    <input type="submit" id="submit" value='Login'/>
+    <input type="submit" id="submit" value="Login" />
   </form>
 </div>`;
 
@@ -24,14 +24,13 @@ export function showLogin(ctx) {
           throw new Error("All fields are required!");
         }
       });
-      let loginQuary = `?username=${encodeURIComponent(
-        formData.username
-      )}&password=${encodeURIComponent(formData.password)}`;
+      let loginQuary = `?username=${formData.username}&password=${formData.password}`;
+      loginQuary = encodeURI(loginQuary);
       url += loginQuary;
       const res = await get(url, formData);
       const userData = {
         username: formData.username,
-        id:res.objectId,
+        id: res.objectId,
         sessionToken: res.sessionToken,
       };
       setUserData(userData);

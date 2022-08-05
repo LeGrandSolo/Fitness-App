@@ -1,9 +1,11 @@
-import { html } from "../api/lib.js";
+import { html, styleMap } from "../api/lib.js";
 import {
   currDate,
   generateMonthAndYear,
   changeToPrevMonth,
   changeToNextMonth,
+  monthUsrIsOn,
+  yearUsrIsOn,
 } from "./changeMonth.js";
 import {
   selectActiveDate,
@@ -16,7 +18,7 @@ import {
   generateDates,
 } from "./generateDates.js";
 
-const calendarTemplate = () => html` <div id="calendar">
+const calendarTemplate = (ctx) => html` <div id="calendar">
   <h2 id="sub-title">My workouts</h2>
   <div class="month">
     <ul class="ul-calendar">
@@ -57,19 +59,35 @@ const calendarTemplate = () => html` <div id="calendar">
         dateTemplate(d, false, ["not-curr-month", "next-month"])
       )}
     </ul>
-    <div id="popup"></div>
+    <div
+      id="popup"
+      style=${styleMap(
+        ctx.userData ? { display: "block" } : { display: "none" }
+      )}
+    ></div>
   </div>
 </div>`;
-const dateTemplate = (num, isCurrMonth, liClassArr) => html`
-  <li
-    id=${num === currDate.getDate() && isCurrMonth ? "active" : null}
-    class=${liClassArr.join(" ")}
-  >
-    ${num}
-  </li>
-`;
+const dateTemplate = (num, isCurrMonth, liClassArr) => {
+  num === currDate.getDate() && isCurrMonth ? liClassArr.push("active") : null;
+  return html`
+    <li id=${isCurrMonth ? num : null} class=${liClassArr.join(" ")}>${num}</li>
+  `;
+};
 export function showCalendar(ctx) {
   generateDates();
-  ctx.render(calendarTemplate());
+  ctx.render(calendarTemplate(ctx));
   showPopupOnSelectedDate();
+}
+export function getActiveDateParams() {
+  let activeDay = document.querySelector(".active").id;
+  activeDay = Number(activeDay);
+  //check for invalid id (if for example user had modified it with inspector)
+  try {
+    if (Number.isNaN(activeDay) || activeDay > 31 || activeDay < 0) {
+      throw new Error("Couldn\t get active date!");
+    }
+    return { day: activeDay, month: monthUsrIsOn, year: yearUsrIsOn };
+  } catch (err) {
+    alert(err.message);
+  }
 }

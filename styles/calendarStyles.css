@@ -12,7 +12,7 @@
   text-transform: capitalize;
   margin: 0;
 }
-.month-year-header{
+.month-year-header {
   color: #e0ff4f;
 }
 /* this is initialized in the main.js */
@@ -77,7 +77,7 @@
 .dates {
   clear: both;
   padding: 1em 0;
-  background: #521410;
+  background: rgb(82, 20, 16);
   overflow: hidden;
   margin: 0;
   border-radius: 1em;
@@ -90,19 +90,37 @@
   text-align: center;
   margin-bottom: 0.4em;
 }
-#popup{
+#popup {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
+  margin-top: 1em;
   display: none;
   position: relative;
 }
-#active {
+form{
+  padding-top: 1em;
+}
+.active {
   background-color: #b3423a;
   border-radius: 0.5em;
   color: #e0ff4f;
 }
-.hitbox{
+.hitbox {
   background-color: rgba(0, 0, 0, 0);
   border: 0;
   width: 3em;
   height: 3em;
   padding-top: 1em;
+}
+table{
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5em;
+  margin: 1em auto;
+  font-size: 1.1rem;
+  width: 80%;
+  color: #e0ff4f;
+}
+td, th{
+  text-align: center;
+  padding-bottom: 0.3em;
 }

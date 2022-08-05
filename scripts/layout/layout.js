@@ -14,7 +14,7 @@ export const layoutTemplate = (ctx, template) => html` <header>
         <span
           id="guest"
           style=${styleMap(
-            getUserData() ? { display: "none" } : { display: "inline" }
+            ctx.userData ? { display: "none" } : { display: "inline" }
           )}
           ><li class="li-global">
             <a href="/login">Login</a>
@@ -26,7 +26,7 @@ export const layoutTemplate = (ctx, template) => html` <header>
         <span
           id="user"
           style=${styleMap(
-            getUserData() ? { display: "inline" } : { display: "none" }
+            ctx.userData ? { display: "inline" } : { display: "none" }
           )}
           ><li class="li-global">
             <a href="javascript:void(0)" @click=${ctx.logout}>Logout</a>

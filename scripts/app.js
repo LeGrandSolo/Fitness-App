@@ -23,6 +23,7 @@ function renderMain(ctx, template) {
 
 function decorateCtx(ctx, next) {
   ctx.logout = onLogout;
+  ctx.userData = getUserData();
   ctx.render = renderMain.bind(null, ctx);
   next();
 }

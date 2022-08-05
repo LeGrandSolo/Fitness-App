@@ -1,6 +1,5 @@
 import { getUserData } from "./util.js";
 
-const host = "https://parseapi.back4app.com";
 export function getFormData(ev) {
   ev.preventDefault();
   const formData = new FormData(ev.target);
@@ -8,6 +7,7 @@ export function getFormData(ev) {
   return asObj;
 }
 export async function request(method, url, data) {
+  let host = "https://parseapi.back4app.com";
   const userData = getUserData();
   const options = {
     method,
@@ -17,8 +17,10 @@ export async function request(method, url, data) {
       "X-Parse-REST-API-Key": "VlQKadGc11LdggQFbvusq0ZOGA6Klls7BPaxEncQ",
     },
   };
-  if (url.split('/')[1] === "users" || url.split('/')[1] === 'login') {
+  if (url.split("/")[1] === "users" || url.split("/")[1].split('?')[0] === "login") {
     options.headers["X-Parse-Revocable-Session"] = "1";
+  } else {
+    host += "/classes";
   }
   if (data) {
     options.headers["Content-Type"] = "application/json";
