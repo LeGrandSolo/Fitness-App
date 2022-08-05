@@ -1,6 +1,7 @@
 import { get, getFormData, post } from "../api/api.js";
-import { html, render, repeat } from "../api/lib.js";
+import { html, render, repeat, until } from "../api/lib.js";
 import { getUserData } from "../api/util.js";
+import { retrieveCurrUser } from "../users/retrieveCurrUser.js";
 import { getActiveDateParams } from "./calendarMain.js";
 import {
   changeToNextMonth,
@@ -9,7 +10,7 @@ import {
   yearUsrIsOn,
 } from "./changeMonth.js";
 
-const popupTemplate = (onSubmit, exercises) => html`
+const popupTemplate = (onSubmit, exercisesPromise) => html`
   <form @submit=${onSubmit}>
     <label for="name">Exercise Name :</label>
     <input type="text" name="name" id="name" />
@@ -17,7 +18,7 @@ const popupTemplate = (onSubmit, exercises) => html`
     <input type="text" name="sets" id="sets" />
     <label for="reps">Reps :</label>
     <input type="text" name="reps" id="reps" />
-    <input type="submit" />
+    <input type="submit" value=" Sumbit "/>
   </form>
   <div id="date-exercises">
     <table>
@@ -27,7 +28,12 @@ const popupTemplate = (onSubmit, exercises) => html`
         <th>Reps</th>
         <th>Intensity</th>
       </tr>
-      ${repeat(exercises, (e) => e.objectId, renderActiveDayExercises)}
+      ${until(
+        exercisesPromise,
+        html`<tr id="loading">
+          Loading...
+        </tr>`
+      )}
     </table>
   </div>
 `;
@@ -61,17 +67,20 @@ function selectActiveDate(e) {
     }
   }
 }
-async function showPopupOnSelectedDate(e) {
+async function showPopupOnSelectedDate() {
   const currDate = new Date(
     `${yearUsrIsOn}-${monthUsrIsOn + 1}-${getActiveDateParams().day}`
   ).toISOString();
-  window.currDate = currDate;
+  let userId;
+  try {
+    userId = (await retrieveCurrUser())?.objectId;
+  } catch (err) {}
   let url = "/DoneExercises";
   const obj = {
     user: {
       __type: "Pointer",
       className: "_User",
-      objectId: "IqXzgLbPYG",
+      objectId: userId,
     },
     date: {
       __type: "Date",
@@ -81,13 +90,11 @@ async function showPopupOnSelectedDate(e) {
   //filter only current user exercises and done on that day
   let quary = "?where=" + JSON.stringify(obj);
   quary = encodeURI(quary);
-  //console.log(obj.date);
   url += quary;
   const popupDiv = document.getElementById("popup");
   try {
-    const exercises = (await get(url)).results;
+    const exercises = getExercises(url);
     render(popupTemplate(onSubmit, exercises), popupDiv);
-    console.log(exercises);
   } catch (err) {
     alert(err);
   }
@@ -103,15 +110,23 @@ async function showPopupOnSelectedDate(e) {
           __type: "Date",
           iso: currDate,
         },
+        user: {
+          __type: "Pointer",
+          className: "_User",
+          objectId: userId,
+        },
       };
+      ev.target.reset();
       await post(url, sentData);
+      showPopupOnSelectedDate();
     } catch (err) {
       alert(err);
     }
   }
 }
 
-function renderActiveDayExercises(exercise) {
-  return exerciseCard(exercise.exercise);
-}
 export { selectActiveDate, showPopupOnSelectedDate as showPopupOnSelectedDate };
+async function getExercises(url) {
+  const exercises = await get(url);
+  return repeat(exercises.results, (e) => e.objectId, exerciseCard);
+}
