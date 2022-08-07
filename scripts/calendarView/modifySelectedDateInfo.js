@@ -1,6 +1,5 @@
-import { get, getFormData, post } from "../api/api.js";
 import { html, render, repeat, until } from "../api/lib.js";
-import { getUserData } from "../api/util.js";
+import { getExercises, onSubmitExerciseInstance } from "../backendInteractions/data.js";
 import { retrieveCurrUser } from "../users/retrieveCurrUser.js";
 import { getActiveDateParams } from "./calendarMain.js";
 import {
@@ -12,13 +11,15 @@ import {
 
 const popupTemplate = (onSubmit, exercisesPromise) => html`
   <form @submit=${onSubmit}>
-    <label for="name">Exercise Name :</label>
+    <label for="name">Exercise Name</label>
     <input type="text" name="name" id="name" />
-    <label for="sets">Sets :</label>
+    <label for="sets">Sets</label>
     <input type="text" name="sets" id="sets" />
-    <label for="reps">Reps :</label>
+    <label for="reps">Reps</label>
     <input type="text" name="reps" id="reps" />
-    <input type="submit" value=" Sumbit "/>
+    <label for="note">Note</label>
+    <input type="text" name="note" id="note" />
+    <input type="submit" value=" Sumbit " />
   </form>
   <div id="date-exercises">
     <table>
@@ -27,6 +28,7 @@ const popupTemplate = (onSubmit, exercisesPromise) => html`
         <th>Sets</th>
         <th>Reps</th>
         <th>Intensity</th>
+        <th>Note</th>
       </tr>
       ${until(
         exercisesPromise,
@@ -43,6 +45,7 @@ const exerciseCard = (exercise) => html`
     <td>${exercise.sets}</td>
     <td>${exercise.reps}</td>
     <td>${exercise.intensity}</td>
+    <td>${exercise.note}</td>
   </tr>
 `;
 
@@ -75,7 +78,7 @@ async function showPopupOnSelectedDate() {
   try {
     userId = (await retrieveCurrUser())?.objectId;
   } catch (err) {}
-  let url = "/DoneExercises";
+  let url = "/DoneExercise";
   const obj = {
     user: {
       __type: "Pointer",
@@ -93,40 +96,14 @@ async function showPopupOnSelectedDate() {
   url += quary;
   const popupDiv = document.getElementById("popup");
   try {
-    const exercises = getExercises(url);
-    render(popupTemplate(onSubmit, exercises), popupDiv);
+    const exercises = getExercises(url, exerciseCard);
+    render(
+      popupTemplate((ev) => onSubmitExerciseInstance(ev, userId), exercises),
+      popupDiv
+    );
   } catch (err) {
     alert(err);
-  }
-  async function onSubmit(ev) {
-    const url = "/DoneExercises";
-    try {
-      const formData = getFormData(ev);
-      const sentData = {
-        name: formData.name,
-        sets: Number(formData.sets),
-        reps: Number(formData.reps),
-        date: {
-          __type: "Date",
-          iso: currDate,
-        },
-        user: {
-          __type: "Pointer",
-          className: "_User",
-          objectId: userId,
-        },
-      };
-      ev.target.reset();
-      await post(url, sentData);
-      showPopupOnSelectedDate();
-    } catch (err) {
-      alert(err);
-    }
   }
 }
 
 export { selectActiveDate, showPopupOnSelectedDate as showPopupOnSelectedDate };
-async function getExercises(url) {
-  const exercises = await get(url);
-  return repeat(exercises.results, (e) => e.objectId, exerciseCard);
-}

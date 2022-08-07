@@ -42,7 +42,7 @@ export function showLogin(ctx) {
 }
 export async function onLogout(ev) {
   ev.preventDefault();
-  await post("/logout");
+  post("/logout");
   clearUserData();
   page.redirect("/");
 }
