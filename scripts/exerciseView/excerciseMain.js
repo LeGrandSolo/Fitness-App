@@ -10,7 +10,7 @@ const exerciseViewTemplate = (exercises, onSubmit) => html`
     </ul>
   </div>
 `;
-export const addNewExerciseTemplate = () => html` <div id="new-exercise-info">
+export const addNewExerciseTemplate = () => html` 
   <h3>Add new exercise</h3>
   <label for="name">Exercise Name</label>
   <input type="text" name="name" id="name" />
@@ -20,8 +20,7 @@ export const addNewExerciseTemplate = () => html` <div id="new-exercise-info">
   <input type="text" name="muscles" id="muscles" />
   <label for="note">Note</label>
   <input type="text" name="note" id="note" />
-  <input type="submit" value=" Sumbit " />
-</div>`;
+  <input type="submit" value=" Sumbit " />`;
 const exerciseCard = (exercise) =>
   html` <li>
     <p>

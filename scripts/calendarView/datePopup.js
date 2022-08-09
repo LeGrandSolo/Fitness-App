@@ -10,24 +10,8 @@ import { retrieveCurrUser } from "../users/retrieveCurrUser.js";
 import { getActiveDateParams } from "./calendarMain.js";
 import { monthUsrIsOn, yearUsrIsOn } from "./changeMonth.js";
 
-export const popupTemplate = (
-  onSubmit,
-  exercisesInstancesPromise,
-  exercises,
-  addNewInfoFunction
-) => html`
-  <form @submit=${onSubmit}>
-    <label for="name" id="nameLabel">Name</label>
-    <select
-      name="name"
-      id="name"
-      @change=${showNewExerciseForm}
-    >
-      ${repeat(exercises, (e) => e.objectId, optionCard)}
-      <option id="add-new">Add New</option>
-    </select>
-    <div id="add-info">${addNewInfoFunction()}</div>
-  </form>
+export const popupTemplate = (exercisesInstancesPromise) => html`
+  <div id="form"></div>
   <div id="date-exercises">
     <table>
       <tr>
@@ -47,8 +31,29 @@ export const popupTemplate = (
   </div>
 `;
 
+let userId;
+const formTemplate = (onSubmit, exercises, addNewInfoTemplate) => html`<form
+  @submit=${onSubmit}
+>
+  <label for="name" id="nameLabel">Name</label>
+  <select name="name" id="name" @change=${showNewExerciseForm}>
+    ${repeat(exercises, (e) => e.objectId, optionCard)}
+    <option id="add-new">Add New</option>
+  </select>
+  <div id="add-info">${addNewInfoTemplate()}</div>
+</form>`;
+
 const optionCard = (exercise) =>
-  html`<option .value=${exercise.objectId}>${exercise.name}</option>`;
+  html`<option .value=${exercise.objectId} selected>${exercise.name}</option>`;
+const addNewInsanceTemplate = () => html`<div id="new-instance-info">
+  <label for="sets">Sets</label>
+  <input type="text" name="sets" id="sets" />
+  <label for="reps">Reps</label>
+  <input type="text" name="reps" id="reps" />
+  <label for="note">Note</label>
+  <input type="text" name="note" id="note" />
+  <input type="submit" value=" Sumbit " />
+</div>`;
 export const exerciseInstanceCard = (exercise) => html`
   <tr>
     <td>${exercise.name}</td>
@@ -59,23 +64,43 @@ export const exerciseInstanceCard = (exercise) => html`
   </tr>
 `;
 
+async function showForm(createsNewExercise) {
+  const formDiv = document.getElementById("form");
+  const exercises = (await get("/Exercise")).results;
+  render(
+    formTemplate(
+      createsNewExercise
+        ? (ev) => onSubmitNewExerciseOnCalendar(ev, userId)
+        : (ev) => onSubmitExerciseInstance(ev, userId),
+      exercises,
+      createsNewExercise ? addNewExerciseTemplate : addNewInsanceTemplate
+    ),
+    formDiv
+  );
+}
+
 function showNewExerciseForm() {
-  if (this.options[this.selectedIndex].id === 'add-new') {
-    showPopupOnSelectedDate(true)
+  if (this.options[this.selectedIndex].id === "add-new") {
+    showForm(true);
+  } else {
+    showForm(false);
   }
 }
 
-export async function showPopupOnSelectedDate(createsNewExercise) {
+async function onSubmitNewExerciseOnCalendar(ev, userId) {
+  const newOption = await onSubmitNewExercise(ev, userId);
+  showForm()
+}
+export async function showPopupOnSelectedDate() {
   const popupDiv = document.getElementById("popup");
   const currDate = new Date(
     `${yearUsrIsOn}-${monthUsrIsOn + 1}-${getActiveDateParams().day}`
   ).toISOString();
-  let userId;
   try {
     userId = (await retrieveCurrUser())?.objectId;
   } catch (err) {}
-  let url = "/DoneExercises";
-  const obj = {
+  let url = "/DoneExercise";
+  const filter = {
     user: {
       __type: "Pointer",
       className: "_User",
@@ -87,32 +112,21 @@ export async function showPopupOnSelectedDate(createsNewExercise) {
     },
   };
   //filter only current user exercises and done on that day
-  let quary = "?where=" + JSON.stringify(obj);
+  let quary = "?where=" + JSON.stringify(filter);
   quary = encodeURI(quary);
   url += quary;
   try {
-    const exercises = (await get("/Exercise")).results;
     const exerciseInstances = getExercises(url, exerciseInstanceCard);
     render(
-      popupTemplate(
-        (ev) => onSubmitExerciseInstance(ev, userId),
-        exerciseInstances,
-        exercises,(createsNewExercise?addNewExerciseTemplate:addNewInsanceTemplate)
-      ),
+      //change form depending on desired action
+      popupTemplate(exerciseInstances),
       popupDiv
     );
+    showForm();
   } catch (err) {
     console.error(err);
     alert(err);
   }
 }
-const addNewInsanceTemplate = () => html`<div id="new-instance-info">
-  <label for="sets">Sets</label>
-  <input type="text" name="sets" id="sets" />
-  <label for="reps">Reps</label>
-  <input type="text" name="reps" id="reps" />
-  <label for="note">Note</label>
-  <input type="text" name="note" id="note" />
-  <input type="submit" value=" Sumbit " />
-</div>`;
+
 //TODO do not reload all exercises when add-new is selected
