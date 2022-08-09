@@ -10,6 +10,9 @@
 #exercises ul {
   list-style-type: none;
 }
+#new-exercise-info{
+  z-index: 5;
+}
 #exercises li {
   margin: 0 auto;
   width: 30%;

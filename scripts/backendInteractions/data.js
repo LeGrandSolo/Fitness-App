@@ -1,7 +1,7 @@
 import { repeat } from "../api/lib.js";
 import { get, getFormData, post } from "../api/api.js";
 import { currDate } from "../calendarView/changeMonth.js";
-import { showPopupOnSelectedDate } from "../calendarView/modifySelectedDateInfo.js";
+import { showPopupOnSelectedDate } from "../calendarView/datePopup.js";
 
 export async function onSubmitExerciseInstance(ev, userId) {
   const url = "/DoneExercises";
@@ -34,7 +34,10 @@ export async function onSubmitNewExercise(ev) {
   try {
     const formData = getFormData(ev);
     const sentData = {
-      targetArea: formData.area,targetMuscles: [formData.muscles],note: formData.note,
+      name: formData.name,
+      targetArea: formData.area,
+      targetMuscles: [formData.muscles],
+      note: formData.note,
     };
     await post(url, sentData);
   } catch (err) {

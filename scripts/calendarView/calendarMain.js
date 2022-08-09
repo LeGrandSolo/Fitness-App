@@ -7,16 +7,14 @@ import {
   monthUsrIsOn,
   yearUsrIsOn,
 } from "./changeMonth.js";
-import {
-  selectActiveDate,
-  showPopupOnSelectedDate,
-} from "./modifySelectedDateInfo.js";
+import { selectActiveDate } from "./modifySelectedDateInfo.js";
 import {
   prevMonthDates,
   currMonthDates,
   nextMonthDates,
   generateDates,
 } from "./generateDates.js";
+import { showPopupOnSelectedDate } from "./datePopup.js";
 
 const calendarTemplate = (ctx) => html` <div id="calendar">
   <h2 id="sub-title">My workouts</h2>

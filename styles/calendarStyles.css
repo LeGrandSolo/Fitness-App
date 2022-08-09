@@ -120,6 +120,25 @@ table{
   width: 80%;
   color: #e0ff4f;
 }
+select{
+  display: block;
+  padding: 3em 1.5em;
+  width: 50%;
+  margin: 3rem auto;
+  background: rgba(150, 187, 187, 0.3);
+  border-radius: 1em;
+  text-align: center;
+  color: #e0ff4f;
+}
+select option:hover{
+  box-shadow: 10px 10px 10px 10px inset;
+}
+#nameLabel{
+  position: relative;
+  right: 5em;
+  top: 4.6em;
+  float: left;
+}
 td, th{
   text-align: center;
   padding-bottom: 0.3em;
