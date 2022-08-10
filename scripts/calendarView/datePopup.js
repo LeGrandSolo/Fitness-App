@@ -50,6 +50,8 @@ const addNewInsanceTemplate = () => html`<div id="new-instance-info">
   <input type="text" name="sets" id="sets" />
   <label for="reps">Reps</label>
   <input type="text" name="reps" id="reps" />
+  <label for="intensity">Intensity</label>
+  <input type="text" name="intensity" id="intensity" />
   <label for="note">Note</label>
   <input type="text" name="note" id="note" />
   <input type="submit" value=" Sumbit " />
@@ -89,7 +91,7 @@ function showNewExerciseForm() {
 
 async function onSubmitNewExerciseOnCalendar(ev, userId) {
   const newOption = await onSubmitNewExercise(ev, userId);
-  showForm()
+  showForm();
 }
 export async function showPopupOnSelectedDate() {
   const popupDiv = document.getElementById("popup");
@@ -107,12 +109,20 @@ export async function showPopupOnSelectedDate() {
       objectId: userId,
     },
     date: {
-      __type: "Date",
-      iso: currDate,
+      $gte: {
+        __type: "Date",
+        iso: currDate.substring(0, currDate.indexOf("T")),
+      },
+      $lte: {
+        __type: "Date",
+        iso: currDate.substring(0, currDate.indexOf("T")) + "T23:59:00.000Z",
+      },
     },
   };
+  console.log(currDate.substring(0, currDate.indexOf("T")));
   //filter only current user exercises and done on that day
   let quary = "?where=" + JSON.stringify(filter);
+  console.log(quary);
   quary = encodeURI(quary);
   url += quary;
   try {

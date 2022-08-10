@@ -1,6 +1,7 @@
 import { html ,page} from "../api/lib.js";
 import { getFormData, post } from "../api/api.js";
 import { setUserData } from "../api/util.js";
+import { monthUsrIsOn, yearUsrIsOn } from "../calendarView/changeMonth.js";
 
 const registerTemplate = (onRegister) => html`
   <div class="user-form">
@@ -45,7 +46,7 @@ export function showRegister(ctx) {
         sessionToken: res.sessionToken,
       };
       setUserData(userData);
-      page.redirect("/");
+      page.redirect(`/my-workouts/${monthUsrIsOn}-${yearUsrIsOn}`);
     } catch (err) {
       alert(err);
     }

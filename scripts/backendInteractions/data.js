@@ -14,7 +14,7 @@ export async function onSubmitExerciseInstance(ev, userId) {
     let quary = "?where=" + JSON.stringify(filter);
     const exercise = (await get(exerciseUrl + quary)).results[0];
     const sentData = {
-      name: formData.name,
+      name: exercise.name,
       sets: formData.sets,
       reps: formData.reps,
       note: formData.note,

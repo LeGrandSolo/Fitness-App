@@ -17,9 +17,12 @@ export async function request(method, url, data) {
       "X-Parse-REST-API-Key": "VlQKadGc11LdggQFbvusq0ZOGA6Klls7BPaxEncQ",
     },
   };
-  if (url.split("/")[1] === "users" || url.split("/")[1].split('?')[0] === "login") {
+  if (
+    url.split("/")[1] === "users" ||
+    url.split("/")[1].split("?")[0] === "login"
+  ) {
     options.headers["X-Parse-Revocable-Session"] = "1";
-  } else {
+  } else if (url.split("/")[1] !== "logout") {
     host += "/classes";
   }
   if (data) {

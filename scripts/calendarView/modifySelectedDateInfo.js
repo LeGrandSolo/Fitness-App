@@ -1,6 +1,3 @@
-import { html, until, repeat, render, styleMap } from "../api/lib.js";
-import { onSubmitNewExercise } from "../backendInteractions/data.js";
-import { addNewExerciseTemplate } from "../exerciseView/excerciseMain.js";
 import { changeToNextMonth, changeToPrevMonth } from "./changeMonth.js";
 import { showPopupOnSelectedDate } from "./datePopup.js";
 

@@ -14,11 +14,16 @@
   z-index: 5;
 }
 #exercises li {
-  margin: 0 auto;
+  margin: 1em auto;
   width: 30%;
   color: #e0ff4f;
   text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
     1px 1px 0 #001011;
   font-size: 1.2rem;
   font-weight: bold;
+}
+#exercise-form-data
+{
+  border-radius: 1em;
+  background-color: rgba(150, 187, 187, 0.3);
 }
