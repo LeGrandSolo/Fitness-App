@@ -10,7 +10,7 @@
 #exercises ul {
   list-style-type: none;
 }
-#new-exercise-info{
+#new-exercise-info {
   z-index: 5;
 }
 #exercises li {
@@ -22,8 +22,17 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
-#exercise-form-data
-{
+#exercise-form-data, #exercise-details{
   border-radius: 1em;
   background-color: rgba(150, 187, 187, 0.3);
+}
+#exercise-details-head :hover {
+  cursor: pointer;
+}
+.instance p {
+  margin: 0 auto;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  color: #e0ff4f;
 }

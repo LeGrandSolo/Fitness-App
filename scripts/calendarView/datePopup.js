@@ -111,20 +111,19 @@ export async function showPopupOnSelectedDate() {
     date: {
       $gte: {
         __type: "Date",
-        iso: currDate.substring(0, currDate.indexOf("T")),
+        iso: currDate.substring(0, currDate.indexOf("T")) + "T00:00:00.000Z",
       },
       $lte: {
         __type: "Date",
-        iso: currDate.substring(0, currDate.indexOf("T")) + "T23:59:00.000Z",
+        iso: currDate.substring(0, currDate.indexOf("T")) + "T23:59:59.000Z",
       },
     },
   };
-  console.log(currDate.substring(0, currDate.indexOf("T")));
   //filter only current user exercises and done on that day
   let quary = "?where=" + JSON.stringify(filter);
-  console.log(quary);
   quary = encodeURI(quary);
   url += quary;
+  console.log(url);
   try {
     const exerciseInstances = getExercises(url, exerciseInstanceCard);
     render(
@@ -138,5 +137,3 @@ export async function showPopupOnSelectedDate() {
     alert(err);
   }
 }
-
-//TODO do not reload all exercises when add-new is selected

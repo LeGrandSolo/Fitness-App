@@ -1,6 +1,9 @@
 import { get } from "../api/api.js";
 import { html, render, repeat } from "../api/lib.js";
 import { onSubmitNewExercise } from "../backendInteractions/data.js";
+import { calendarTemplate } from "../calendarView/calendarMain.js";
+import { showPopupOnSelectedDate } from "../calendarView/datePopup.js";
+import { generateDates } from "../calendarView/generateDates.js";
 
 const showForm = (ev) => {
   ev.preventDefault();
@@ -16,13 +19,17 @@ const showForm = (ev) => {
   }
 };
 
-const myExercisesViewTemplate = (exercises, onSubmit) => html`
+const myExercisesViewTemplate = (ctx, exercises, onSubmit) => html`
   <form @submit=${onSubmit} id="exercise-form">
     <button @click=${showForm} id="show-hide-btn">Add new exercise</button>
   </form>
   <div id="exercises">
     <ul>
-      ${repeat(exercises, (e) => e.objectId, exerciseCard)}
+      ${repeat(
+        exercises,
+        (e) => e.objectId,
+        (e) => exerciseCard(ctx, e)
+      )}
     </ul>
   </div>
 `;
@@ -40,27 +47,64 @@ export const addNewExerciseTemplate = () => html`
     <input type="submit" value=" Add exercise " />
   </div>
 `;
-const exerciseCard = (exercise) =>
-  html` <li @click=${() => showExerciseDetails(exercise.objectId)}>
+const exerciseDetailsCard = (exercise, instances) => html`
+  <div id="exercise-details">
     <h3>${exercise.name}</h3>
+    <ul>
+      ${repeat(instances, (inst) => inst.objectId, instanceCard)}
+    </ul>
+  </div>
+`;
+const instanceCard = (instance) => {
+  const instanceDate = new Date(instance.date.iso);
+  const currDate = new Date()
+  return html`
+    <li class="instance">
+      <p>
+        ${String(instanceDate.getDate()).length === 1
+          ? "0" + instanceDate.getDate()
+          : instanceDate.getDate()}-${String(instanceDate.getMonth() + 1)
+          .length === 1
+          ? "0" + (instanceDate.getMonth() + 1)
+          : instanceDate.getMonth() + 1}-${instanceDate.getFullYear()}
+          <span>(${Math.floor((currDate - instanceDate) /(1000*3600*24))} days ago)</span>
+      </p>
+      <p>Reps ${instance.reps}, Sets ${instance.sets}</p>
+      <button @click=${cal}> click</button>
+      <div id="instance-calendar" >
+      </div>
+    </li>
+  `;
+};
+function cal() {
+  const div = document.getElementById("instance-calendar")
+  generateDates();
+  render(calendarTemplate(),div );
+  showPopupOnSelectedDate();
+}
+const exerciseCard = (ctx, exercise) =>
+  html` <li>
+    <h3
+      @click=${() => getExerciseData(ctx, exercise)}
+      id="exercise-details-head"
+    >
+      ${exercise.name}
+    </h3>
   </li>`;
-async function showExerciseDetails(exerciseId) {
-  const quaryObj = {
-    objectId: exerciseId,
-  };
-  const quary = "/Exercise?where=" + JSON.stringify(quaryObj);
-  const exercise = (await get(quary)).results[0];
+async function getExerciseData(ctx, exercise) {
+  const instances = [];
   for (const instanceId of exercise.instances) {
     const instQuaryObj = {
       objectId: instanceId,
     };
-    const instQuary = "/Exercise?where=" + JSON.stringify(instQuaryObj);
+    const instQuary = "/DoneExercise?where=" + JSON.stringify(instQuaryObj);
     const instance = (await get(instQuary)).results[0];
+    instances.push(instance);
   }
-  console.log(exercise);
+  ctx.render(exerciseDetailsCard(exercise, instances));
 }
 export async function showExerciseView(ctx) {
   const url = "/Exercise";
   const exercises = (await get(url)).results;
-  ctx.render(myExercisesViewTemplate(exercises, onSubmitNewExercise));
+  ctx.render(myExercisesViewTemplate(ctx, exercises, onSubmitNewExercise));
 }

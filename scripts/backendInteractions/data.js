@@ -1,10 +1,11 @@
 import { repeat } from "../api/lib.js";
 import { get, getFormData, post, put } from "../api/api.js";
-import { currDate } from "../calendarView/changeMonth.js";
 import { showPopupOnSelectedDate } from "../calendarView/datePopup.js";
+import { getActiveDateParams } from "../calendarView/calendarMain.js";
 
 export async function onSubmitExerciseInstance(ev, userId) {
   const instanceUrl = "/DoneExercise";
+  const activeDate = getActiveDateParams();
   try {
     const formData = getFormData(ev);
     const filter = {
@@ -20,7 +21,8 @@ export async function onSubmitExerciseInstance(ev, userId) {
       note: formData.note,
       date: {
         __type: "Date",
-        iso: currDate,
+        //2022-08-12T14:22:00.000Z
+        iso: `${activeDate.year}-${activeDate.month + 1}-${activeDate.day}`,
       },
       user: {
         __type: "Pointer",

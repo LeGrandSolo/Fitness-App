@@ -16,7 +16,7 @@ import {
 } from "./generateDates.js";
 import { showPopupOnSelectedDate } from "./datePopup.js";
 
-const calendarTemplate = (ctx) => html` <div id="calendar">
+export const calendarTemplate = (ctx) => html` <div id="calendar">
   <h2 id="sub-title">My workouts</h2>
   <div class="month">
     <ul class="ul-calendar">
