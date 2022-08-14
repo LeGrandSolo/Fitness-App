@@ -1,5 +1,6 @@
 import { get } from "../api/api.js";
-import { html, render, repeat } from "../api/lib.js";
+import { html, render } from "/static/node_modules/lit-html/lit-html.js";
+import { repeat } from "/static/node_modules/lit-html/directives/repeat.js";
 import { onSubmitNewExercise } from "../backendInteractions/data.js";
 import { calendarTemplate } from "../calendarView/calendarMain.js";
 import { showPopupOnSelectedDate } from "../calendarView/datePopup.js";

@@ -1,4 +1,5 @@
-import { html ,page} from "../api/lib.js";
+import { html} from "/static/node_modules/lit-html/lit-html.js";
+import page from "/static/node_modules/page/page.mjs";
 import { getFormData, post } from "../api/api.js";
 import { setUserData } from "../api/util.js";
 import { monthUsrIsOn, yearUsrIsOn } from "../calendarView/changeMonth.js";
