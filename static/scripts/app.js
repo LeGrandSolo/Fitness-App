@@ -8,7 +8,6 @@ import { onLogout, showLogin } from "./users/login.js";
 import { showRegister } from "./users/register.js";
 
 const body = document.querySelector("body");
-
 page(decorateCtx);
 page("/index.html", "/");
 page("/my-workouts/:month", showCalendar);

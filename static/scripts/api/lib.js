@@ -1,7 +1,7 @@
-import { html, render } from "../../node_modules/lit-html/lit-html.js";
-import { styleMap } from "../../node_modules/lit-html/directives/style-map.js";
-import { repeat } from "../../node_modules/lit-html/directives/repeat.js";
-import { classMap } from "../../node_modules/lit-html/directives/class-map.js";
-import { until } from "../../node_modules/lit-html/directives/until.js";
-import page from "../../node_modules/page/page.mjs";
-export { html, render, styleMap, classMap, page, repeat, until };
+import { html, render } from "../lib/lit-html.js";
+import { repeat } from "../lib/directives/repeat.js";
+import { styleMap } from "../lib/directives/style-map.js";
+import { classMap } from "../lib/directives/class-map.js";
+import { until } from "../lib/directives/until.js";
+import page from "../lib/page.mjs";
+export { html, render, repeat, styleMap, classMap, until, page };
