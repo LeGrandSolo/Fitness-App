@@ -1,4 +1,5 @@
-import { render, page} from "./api/lib.js";
+import {render } from "/static/node_modules/lit-html/lit-html.js";
+import page from "/static/node_modules/page/page.mjs";
 import { getUserData } from "./api/util.js";
 import { showCalendar } from "./calendarView/calendarMain.js";
 import { showExerciseView } from "./exerciseView/excerciseMain.js";
