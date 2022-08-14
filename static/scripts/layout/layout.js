@@ -1,5 +1,5 @@
-import { html } from "/static/node_modules/lit-html/lit-html.js";
-import { styleMap } from "/static/node_modules/lit-html/directives/style-map.js";
+import { html, styleMap } from "../api/lib.js";
+import { getUserData } from "../api/util.js";
 
 export const layoutTemplate = (ctx, template) => html` <header>
     <h1>

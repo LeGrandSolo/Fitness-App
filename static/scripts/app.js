@@ -1,5 +1,4 @@
-import {render } from "/static/node_modules/lit-html/lit-html.js";
-import page from "/static/node_modules/page/page.mjs";
+import { render, page, html, styleMap } from "./api/lib.js";
 import { getUserData } from "./api/util.js";
 import { showCalendar } from "./calendarView/calendarMain.js";
 import { showExerciseView } from "./exerciseView/excerciseMain.js";
@@ -11,12 +10,12 @@ import { showRegister } from "./users/register.js";
 const body = document.querySelector("body");
 
 page(decorateCtx);
-page("/static/index.html", "/");
+page("/index.html", "/");
 page("/my-workouts/:month", showCalendar);
 page("/", showHome);
 page("/login", showLogin);
 page("/register", showRegister);
-page("/excercises", showExerciseView); 
+page("/excercises", showExerciseView);
 page.start();
 
 function renderMain(ctx, template) {

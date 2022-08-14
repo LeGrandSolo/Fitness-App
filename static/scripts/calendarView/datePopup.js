@@ -1,7 +1,5 @@
 import { get } from "../api/api.js";
-import { html, render } from "/static/node_modules/lit-html/lit-html.js";
-import { repeat } from "/static/node_modules/lit-html/directives/repeat.js";
-import { until } from "/static/node_modules/lit-html/directives/until.js";
+import { render, html, repeat, until } from "../api/lib.js";
 import {
   getExercises,
   onSubmitExerciseInstance,
