@@ -78,6 +78,7 @@ export function showCalendar(ctx) {
 }
 export function getActiveDateParams() {
   let activeDay = document.querySelector(".active").id;
+  console.log(activeDay)
   activeDay = Number(activeDay);
   //check for invalid id (if for example user had modified it with inspector)
   try {

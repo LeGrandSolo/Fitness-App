@@ -2,7 +2,7 @@
   padding: 3em 1.5em;
   width: 90%;
   margin: auto;
-  background: #521410;
+  background-color: hsla(0, 0%, 0%, 0.5) ;
   border-top-right-radius: 1em;
   border-top-left-radius: 1em;
   text-align: center;
@@ -13,17 +13,21 @@
   margin: 0;
 }
 .month-year-header {
-  color: #e0ff4f;
+  color: aliceblue;
 }
 /* this is initialized in the main.js */
 #monthHeaderName {
   margin-bottom: 0.5em;
 }
 .not-curr-month {
-  color: #96bbbb;
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+#date-exercises{
+  color: aliceblue;
 }
 .curr-month {
-  color: #e0ff4f;
+  color: rgba(0, 0, 0, 0.8);
 }
 /* this is initialized in the main.js */
 .month ul {
@@ -45,8 +49,8 @@
   padding: 2em;
   margin: auto;
   padding: 0em 2em 2em 2em;
-  background: #96bbbb;
-  box-shadow: 4px 6px #494949;
+  background: hsla(0, 0%, 0%, 0.5);
+  box-shadow: 4px 6px hsla(0, 0%, 0%, 0.5);
   text-align: center;
   border-bottom-left-radius: 1em;
   border-bottom-right-radius: 1em;
@@ -59,7 +63,7 @@
   display: inline;
   font-size: 1rem;
   margin-right: 2em;
-  color: #e0ff4f;
+  color: black;
 }
 .ul-calendar {
   margin: 0 auto 0.5em auto;
@@ -71,13 +75,14 @@
   list-style-type: none;
   margin-bottom: 0.5em;
   width: 13.6%;
+  font-weight: bold;
   text-align: center;
-  color: #e0ff4f;
+  color: aliceblue;
 }
 .dates {
   clear: both;
   padding: 1em 0;
-  background: rgb(82, 20, 16);
+  background: rgba(240, 248, 255, 0.75);
   overflow: hidden;
   margin: 0;
   border-radius: 1em;
@@ -86,6 +91,7 @@
   list-style-type: none;
   float: left;
   cursor: default;
+  font-weight: bold;
   width: 13.6%;
   text-align: center;
   margin-bottom: 0.4em;
@@ -101,9 +107,8 @@ form{
   padding-top: 1em;
 }
 .active {
-  background-color: #b3423a;
+  background-color: #E7ECEF;
   border-radius: 0.5em;
-  color: #e0ff4f;
 }
 .hitbox {
   background-color: rgba(0, 0, 0, 0);
@@ -118,17 +123,17 @@ table{
   margin: 1em auto;
   font-size: 1.1rem;
   width: 80%;
-  color: #e0ff4f;
+  color: aliceblue;
 }
 select{
   display: block;
   padding: 3em 1.5em;
   width: 50%;
   margin: 3rem auto;
-  background: rgba(150, 187, 187, 0.3);
+  background: rgba(240, 248, 255, 0.75);;
   border-radius: 1em;
   text-align: center;
-  color: #e0ff4f;
+  color: black;
 }
 select option:hover{
   box-shadow: 10px 10px 10px 10px inset;

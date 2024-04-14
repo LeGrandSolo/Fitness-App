@@ -96,7 +96,7 @@ async function onSubmitNewExerciseOnCalendar(ev, userId) {
 export async function showPopupOnSelectedDate() {
   const popupDiv = document.getElementById("popup");
   const currDate = new Date(
-    `${yearUsrIsOn}-${monthUsrIsOn + 1}-${getActiveDateParams().day}`
+    `${yearUsrIsOn}-${monthUsrIsOn + 1}-${getActiveDateParams().day +1}`
   ).toISOString();
   try {
     userId = (await retrieveCurrUser())?.objectId;
@@ -123,7 +123,6 @@ export async function showPopupOnSelectedDate() {
   let quary = "?where=" + JSON.stringify(filter);
   quary = encodeURI(quary);
   url += quary;
-  console.log(url);
   try {
     const exerciseInstances = getExercises(url, exerciseInstanceCard);
     render(

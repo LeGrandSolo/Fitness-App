@@ -1,5 +1,7 @@
 import { get } from "../api/api.js";
 import { html, render, repeat } from "../api/lib.js";
+import { getUserData } from "../api/util.js";
+import { retrieveCurrUser } from "../users/retrieveCurrUser.js";
 import { onSubmitNewExercise } from "../backendInteractions/data.js";
 import { calendarTemplate } from "../calendarView/calendarMain.js";
 import { showPopupOnSelectedDate } from "../calendarView/datePopup.js";
@@ -67,7 +69,7 @@ const instanceCard = (instance) => {
           .length === 1
           ? "0" + (instanceDate.getMonth() + 1)
           : instanceDate.getMonth() + 1}-${instanceDate.getFullYear()}
-          <span>(${Math.floor((currDate - instanceDate) /(1000*3600*24))} days ago)</span>
+          <span>(${Math.floor((currDate - instanceDate) /(1000*3600*24)) + 1} days ago)</span>
       </p>
       <p>Reps ${instance.reps}, Sets ${instance.sets}</p>
       <button @click=${cal}> click</button>
@@ -92,15 +94,23 @@ const exerciseCard = (ctx, exercise) =>
     </h3>
   </li>`;
 async function getExerciseData(ctx, exercise) {
+  let userId;
   const instances = [];
-  for (const instanceId of exercise.instances) {
-    const instQuaryObj = {
-      objectId: instanceId,
-    };
-    const instQuary = "/DoneExercise?where=" + JSON.stringify(instQuaryObj);
-    const instance = (await get(instQuary)).results[0];
-    instances.push(instance);
-  }
+    userId = (await retrieveCurrUser())?.objectId;
+
+      console.log(exercise);
+      const instQuaryObj = {
+        exercise:{ __type: "Pointer", className: "Exercise", objectId: exercise.objectId},
+        user: {
+          __type: "Pointer",
+          className: "_User",
+          objectId: userId,
+        },
+      };
+      const instQuary = "/DoneExercise?where=" + JSON.stringify(instQuaryObj);
+      const instance = (await get(instQuary)).results[0];
+      instances.push(instance);
+ 
   ctx.render(exerciseDetailsCard(exercise, instances));
 }
 export async function showExerciseView(ctx) {

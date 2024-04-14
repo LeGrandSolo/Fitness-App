@@ -2,6 +2,7 @@ import { html, styleMap } from "../api/lib.js";
 import { getUserData } from "../api/util.js";
 
 export const layoutTemplate = (ctx, template) => html` <header>
+<div class="header">
     <h1>
       <a href="/" id="title">Be Healthier!</a>
     </h1>
@@ -34,5 +35,6 @@ export const layoutTemplate = (ctx, template) => html` <header>
         >
       </ul>
     </nav>
+    </div>
   </header>
   <main>${template}</main>`;

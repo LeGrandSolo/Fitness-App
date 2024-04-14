@@ -19,10 +19,15 @@
   text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
     1px 1px 0 #001011;
 }
+.header{
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
+}
 body {
   /* background-color: #586F7C; */
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url(../editjpg.jpg);
+    url(../pexels-max-vakhtbovycn-7031705.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -37,16 +42,16 @@ div {
 h3 {
   margin-bottom: 1em;
   font-size: 1.5rem;
-  color: #e0ff4f;
+  color: aliceblue;
   text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
     1px 1px 0 #001011;
   font-weight: bolder;
 }
 .li-global {
-  display: inline;
-  margin-right: 2em;
+  display: inline-flex;
+  margin-right: 3rem;
 
-  color: #e0ff4f;
+  color: aliceblue;
 }
 .ul-global {
   user-select: none;
@@ -54,30 +59,27 @@ h3 {
   margin: 0 auto 0.5em auto;
   list-style-type: none;
   display: table;
+  margin-top: 1rem;
 }
 #nav {
   margin: 0 auto;
 }
 a {
-  color: #e0ff4f;
+  color: aliceblue;
   text-decoration: none;
   font-size: 1.2rem;
   font-weight: bold;
-  margin-top: 100px;
-  text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
-    1px 1px 0 #001011;
   transition: all 200ms;
 }
 li:hover a {
-  transform: scale(1.5);
-  font-size: 1.3rem;
+  transform: scale(1.1);
   transition: all 200ms;
 }
 .user-form {
   padding: 3em 1.5em;
   width: 90%;
   margin: 3rem auto;
-  background: rgba(150, 187, 187, 0.3);
+  background: rgba(0, 0, 0, 0.3);
   box-shadow: 0, 0, 8px, 8px rgba(0, 0, 0, 0.3);
   border-radius: 1em;
   text-align: center;
@@ -94,7 +96,7 @@ input {
 label {
   width: 30%;
   text-align: right;
-  color: #e0ff4f;
+  color: aliceblue;
   text-shadow: -1px -1px 0 #001011, 1px -1px 0 #001011, -1px 1px 0 #001011,
     1px 1px 0 #001011;
   font-size: 1.2rem;
@@ -117,12 +119,12 @@ label + input {
 input,
 button {
   text-align: center;
-  background-color: rgba(150, 187, 187, 0.3);
+  background-color: rgba(240, 248, 255, 0.75);
   border-style: solid;
-  border-color: #e0ff4f;
+  border-color: aliceblue;
   font-size: 1.2rem;
   outline: none;
-  color: #e0ff4f;
+  color: aliceblue;
   border-radius: 0.3em;
 }
 button {
